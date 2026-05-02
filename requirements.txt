@@ -1,0 +1,25 @@
+# Core LLM & Agent
+langchain==0.3.28
+langchain-core==0.3.83
+langchain-openai==0.3.35
+langchain-community==0.3.31
+langchain-huggingface==0.3.1
+langchain-chroma==0.2.6
+langgraph==0.2.76
+
+# Vector Store
+chromadb==1.5.5
+sentence-transformers==3.3.1
+
+# Document Parsing
+pdfplumber==0.11.4
+python-docx==1.1.2
+
+# Config & Environment
+pydantic>=2.10.4
+pydantic-settings>=2.10.1
+python-dotenv==1.0.1
+
+# UI
+streamlit==1.41.1
+
