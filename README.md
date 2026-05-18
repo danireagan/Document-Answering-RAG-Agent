@@ -1,6 +1,6 @@
-# CV Question & Answer Agent
+# Document Question & Answer Agent
 
-A Python-based agentic AI system that answers questions about a CV using LangGraph, GPT-4o, and ChromaDB. Answers are strictly grounded in CV content with no hallucinations.
+A Python-based agentic AI system that answers questions about a document that is uploaded using LangGraph, GPT-4o, and ChromaDB. Answers are strictly grounded in document content with no hallucinations.
 
 ## Architecture
 
@@ -11,7 +11,7 @@ User Question
       ↓
     tools_condition
       │
-      ├── tool_calls → [tool_node]     search_cv / get_cv_sections
+      ├── tool_calls → [tool_node]     search_document / get_document_sections
       │                    │
       │                    └──→ [agent_node]   LLM generates grounded answer
       │
@@ -35,7 +35,7 @@ User Question
 
 ```bash
 git clone <your-repo-url>
-cd cv_agent
+cd Document-Answering-RAG-Agent
 
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
@@ -73,16 +73,16 @@ PDF and DOCX use separate chunk sizes because their structure differs: PDF pages
 
 ---
 
-## Add Your CV
+## Add Your Document
 
-Place your CV in `data/cv/`:
+Place your CV in `data/doc/`:
 
 ```
-data/cv/your_name_cv.pdf    # PDF format
-data/cv/your_name_cv.docx   # or DOCX format
+data/doc/your_file.pdf    # PDF format
+data/doc/your_file.docx   # or DOCX format
 ```
 
-Only one CV file should be in `data/cv/` at a time.
+Only one doc file should be in `data/doc/` at a time.
 
 ---
 
@@ -96,10 +96,10 @@ python -m cli.main
 python -m cli.main --re-ingest
 
 # Single question, then enter interactive mode
-python -m cli.main --query "What programming languages do you know?"
+python -m cli.main --query "What is the capital of France?"
 
 # Single question, then exit
-python -m cli.main --query "What is your education background?" --no-interactive
+python -m cli.main --query "What is the capital of Sri Lanka?" --no-interactive
 ```
 
 **CLI commands during session:**
@@ -117,20 +117,20 @@ streamlit run ui/streamlit_app.py
 
 Open [http://localhost:8501](http://localhost:8501) in your browser.
 
-### CV Source Options
+### Document Source Options
 
 **Mode 1 — Upload file:**
 
-1. Sidebar → CV Source → select "Upload file"
+1. Sidebar → Document Source → select "Upload file"
 2. Click Browse and select your PDF or DOCX
-3. Click "Ingest Uploaded CV"
+3. Click "Ingest Uploaded Document"
 
 **Mode 2 — Use existing file:**
 
-1. Place your CV in `data/cv/`
-2. Sidebar → CV Source → select "Use existing file"
+1. Place your document in `data/doc/`
+2. Sidebar → Doc Source → select "Use existing file"
 3. Select from the dropdown
-4. Click "Ingest Selected CV"
+4. Click "Ingest Selected Doc"
 
 ### Model Switcher
 
@@ -156,7 +156,7 @@ Each entry includes the question, answer, citations, and timestamp.
 ## Project Structure
 
 ```
-cv_agent/
+Document-Answering-RAG-Agent/
 ├── config.py                    # Pydantic Settings — single source of truth
 ├── .env.example                 # Environment variable template
 ├── requirements.txt
